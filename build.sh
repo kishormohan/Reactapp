@@ -1,6 +1,6 @@
 #!/bin/bash
 IMAGE_NAME=react
-TAG=v4.0
+TAG=v2.0
 DOCKERFILE_PATH="."
 echo "Building Docker image..."
 docker build -t ${IMAGE_NAME}:${TAG} ${DOCKERFILE_PATH}
