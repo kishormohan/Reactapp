@@ -1,0 +1,7 @@
+---
+services:
+  deploy:
+    image: react:v5.0
+    container_name: react-app
+    ports:
+      - 8086:80
