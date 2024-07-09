@@ -1,0 +1,6 @@
+groups:
+  - name: testing the alerting of node
+    rules:
+      - alert: InstanceDown
+        expr: up == 0
+        for: 1m

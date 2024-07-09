@@ -1,5 +1,9 @@
 Screenshots/
+Prometheus/
 Readme.txt
 build.sh
 deploy.sh
 docker-compose.yaml
+pipeline_*
+Terraform
+
