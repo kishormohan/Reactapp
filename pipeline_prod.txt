@@ -1,0 +1,49 @@
+pipeline{
+
+	agent any
+
+	environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
+
+	stages {
+	    
+	    stage('gitclone') {
+
+			steps {
+				git branch: 'main', url: 'https://github.com/kishormohan/Reactapp.git'
+		}
+		}
+
+		stage('Build') {
+
+			steps {
+				sh 'chmod +x ./build.sh'
+				sh './build.sh'
+			}
+		}
+
+		stage('Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+		stage('Push') {
+
+			steps {
+				sh 'docker tag react:v1.0 kishorkm03/dev_repo:v1.0'
+				sh 'docker push kishorkm03/dev_repo:v1.0'
+			}
+		}
+	}
+
+	post {
+		always {
+			sh 'docker logout'
+		}
+	}
+
+}
+
